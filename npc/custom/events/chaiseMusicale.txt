@@ -1,0 +1,159 @@
+//===== FoY Script =======================================
+//= Event chaise musicale
+//===== By: ==================================================
+//= Kutikuti
+//===== Current Version: =====================================
+//= 0.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Dans une petite salle, des safety de différents lvl vont être posés par le npc, en fonction du nombre de joueur. 
+//Chaque joueur a quelques secondes pour se diriger vers un safety. 
+//Si deux joueurs sont sur un même safety, c’est perdu. 
+//Quand le npc dit “Stop”, les joueurs sont stone curse. 
+//Si les joueurs ne sont pas sur des safety a temps, c’est perdu. 
+//Les Safety disparaissent chacun à leur tour, en fonction de leur lvl. 
+//Le dernier joueur sur map est le gagnant. Jeu a faire sur plusieures manches.
+//= 
+//===== Additional Comments: =================================
+//= 0.1 Création
+//============================================================
+
+prontera,161,155,4	script	Musical Chair Event	795,{
+s
+	// Currently set to run every two hours.
+	// To change times, edit the OnClock labels below.
+
+	set .@GMLevel,60;	// GM level required to access NPC.
+	set .@n$,"[^0000FFMusical Chair NPC^000000]";
+
+	if (getgmlevel()>=.@GMLevel) {
+		mes .@n$;
+		mes "Select an option.";
+		next;
+		switch(select("Turn ON/OFF Event")) {
+		case 1:
+			mes .@n$;
+			if (.EventON) {
+				mes "The Event is currently: [^0000FFON^000000]";
+				mes "Would you like to turn it OFF?";
+			} else {
+				mes "The Event is currently: [^FF0000OFF^000000]";
+				mes "Would you like to turn it ON?";
+			}
+			if(select("Yes:No")==2) close;
+			if (.EventON) {
+				set .EventON,0; 
+				set .Timer,0;
+				setnpctimer 0; 
+				stopnpctimer;
+				announce "A GM has decided to turn the Musical Chair Event off. As a result no further prizes will be given.",bc_map | bc_blue;
+				close;
+			}
+			mes .@n$;
+			mes "Input the number of rounds you want the event to last.";
+			mes "Default number: [^0000FF"+.Rounds+"^000000]";
+			next;
+			input .@Rounds;
+			set .Rounds,.@Rounds;
+			mes .@n$;
+			mes "The number of rounds has been changed to "+.Rounds+".";
+			set .EventON,1; 
+			set .Timer,1; 
+			setnpctimer 0; 
+			initnpctimer;
+			set .ResetCounter,.ResetCounter+1;
+			announce "The Musical Chair Event will begin in 3 minutes.",bc_all | bc_blue;
+			announce "The Event is being held in Prontera.",bc_all | bc_blue;
+			close;
+		}
+	}
+	if (.EventON) end;
+	mes .@n$;
+	mes "Welcome.";
+	mes "How may I be of assistance?";
+	if(select("Information:Nothing, just passing through.")==2) close;
+	next;
+	mes .@n$;
+	mes "This event is quite simple.";
+	mes "TODO : explain...";
+	close;
+
+OnInit:
+	set .EventON,0;
+	set .Wait,0;
+	set .Winner,0;
+	set .ResetCounter,0;
+	set .Rounds,5;
+	set .Prize,512;
+	set .PrizeAmt,1;
+	set .Rule,1;
+	set .Size,10;
+	end;
+OnClock0000:
+OnClock0200:
+OnClock0400:
+OnClock0600:
+OnClock0800:
+OnClock1000:
+OnClock1200:
+OnClock1400:
+OnClock1600:
+OnClock1800:
+OnClock2000:
+OnClock2200:
+	set .ResetCounter,.ResetCounter+1;
+	set .EventON,1;
+	set .Timer,1;
+	set .Wait,1;
+	announce "The Musical Chair event will begin in 3 minutes.",bc_all | bc_blue;
+	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	setnpctimer 0;
+	initnpctimer;
+	end;
+OnTimer10000:
+	if (.Timer || .Change) end;
+	set .Wait,0;
+	goto iMusicalChair;
+	end;
+OnTimer60000:
+	if (.Timer!=1) end;
+	announce "The Musical Chair will begin in 2 minutes.",bc_all | bc_blue;
+	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	end;
+OnTimer120000:
+	if (.Timer!=1) end;
+	announce "The Musical Chair will begin 1 minute.",bc_all | bc_blue;
+	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	end;
+OnTimer180000:
+	if (.Timer!=1) end;
+	announce "The Musical Chair has begun!",bc_all | bc_blue;
+	announce "The Event is being held in Prontera.",bc_all | bc_blue;
+	set .Timer,0; 
+	stopnpctimer;
+	setnpctimer 0; 
+	initnpctimer;
+iMusicalChair:
+	set .Winner,0;
+	
+	setnpctimer 0;
+	end;
+iWin:
+	set .Winner,1;
+	set .RoundCount,.RoundCount+1;
+	//getitem .Prize,.PrizeAmt;
+	announce strcharinfo(0)+" has won!",bc_map | bc_blue;
+	if (.RoundCount>=.Rounds) {
+		set .RoundCount,0; 
+		set .Change,0; 
+		set .EventON,0;
+		setnpctimer 0; 
+		stopnpctimer;
+		npctalk "Musical Chair : Thank you all for playing. That was the last round of the Musical Chair Event. Come play again later.";
+		end;
+	}
+	set .Change,0;
+	setnpctimer 0;
+	end;
+}
