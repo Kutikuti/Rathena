@@ -41,6 +41,7 @@ Thumbs.db
 /map-server
 /mapcache
 /nbproject
+/out
 
 # /3rdparty/libconfig/
 /3rdparty/libconfig/Makefile
@@ -124,3 +125,4 @@ Thumbs.db
 /libmysql.dll
 /pcre8.dll
 /zlib.dll
+
