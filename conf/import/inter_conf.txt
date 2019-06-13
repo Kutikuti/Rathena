@@ -1,0 +1,35 @@
+login_server_ip: 127.0.0.1
+login_server_port: 3306
+login_server_id: 8466075
+login_server_pw: 969K^Dd!3Y&S1Di
+login_server_db: RMmain
+login_codepage:
+login_case_sensitive: no
+
+ipban_db_ip: 127.0.0.1
+ipban_db_port: 3306
+ipban_db_id: 8466075
+ipban_db_pw: 969K^Dd!3Y&S1Di
+ipban_db_db: RMmain
+ipban_codepage:
+
+// MySQL Character server
+char_server_ip: 127.0.0.1
+char_server_port: 3306
+char_server_id: 8466075
+char_server_pw: 969K^Dd!3Y&S1Di
+char_server_db: RMmain
+
+// MySQL Map Server
+map_server_ip: 127.0.0.1
+map_server_port: 3306
+map_server_id: 8466075
+map_server_pw: 969K^Dd!3Y&S1Di
+map_server_db: RMmain
+
+// MySQL Log Database
+log_db_ip: 127.0.0.1
+log_db_port: 3306
+log_db_id: 87223298
+log_db_pw: sjOahqM$Z3S%&4g
+log_db_db: RMlog
