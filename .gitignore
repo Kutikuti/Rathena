@@ -110,6 +110,7 @@ Thumbs.db
 /.idea/workspace.xml
 /build/
 /cbuild/
+/.vscode
 
 # bat tools
 /charserv.bat
