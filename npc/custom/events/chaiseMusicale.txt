@@ -20,6 +20,40 @@
 //============================================================
 
 prontera,161,155,4	script	Musical Chair Event	795,{
+
+
+	function cleanMapMC;function isPlayerInSW;
+
+	debugmes "Debut";
+
+	cleanMapMC();
+	debugmes "155 : " + checkcell("prontera",155,155,CELL_CHKNOVENDING);
+	setcell "prontera",155,155,155,155,CELL_NOVENDING,1;
+	debugmes "155 : " + checkcell("prontera",155,155,CELL_CHKNOVENDING);
+
+	debugmes isPlayerInSW("Adminchar");
+	//reset
+	//setcell "prontera",156,148,156,148,CELL_NOVENDING,0;
+	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
+	//setcell "prontera",156,148,156,148,CELL_NOVENDING,1;
+	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
+	//setcell "prontera",156,148,156,148,CELL_NOVENDING,0;
+	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
+
+	//state before
+	//debugmes "156 : " + checkcell("prontera",156,156,CELL_MAELSTROM);
+	//debugmes "157 : " + checkcell("prontera",157,157,CELL_MAELSTROM);
+
+	//cast
+	//debugmes "Cast";
+	unitskillusepos getnpcid(0),12,2,156,148,-100;
+	//setcell "prontera",156,156,156,156,CELL_MAELSTROM,1;
+	//unitskillusepos getnpcid(0),12,3,157,157,-100;
+
+	//After
+	//debugmes "156 : " + checkcell("prontera",156,156,cell_basilica);
+	//debugmes "157 : " + checkcell("prontera",157,157,CELL_MAELSTROM);
+
 	// Currently set to run every two hours.
 	// To change times, edit the OnClock labels below.
 
@@ -49,6 +83,7 @@ prontera,161,155,4	script	Musical Chair Event	795,{
 				announce "A GM has decided to turn the Musical Chair Event off. As a result no further prizes will be given.",bc_map | bc_blue;
 				close;
 			}
+			next;
 			mes .@n$;
 			mes "Input the number of rounds you want the event to last.";
 			mes "Default number: [^0000FF"+.Rounds+"^000000]";
@@ -88,6 +123,11 @@ OnInit:
 	set .PrizeAmt,1;
 	set .Rule,1;
 	set .Size,10;
+	set .map$,"prontera";
+	set .x1,155;
+	set .y1,155;
+	set .x2,155;
+	set .y2,155;
 	end;
 OnClock0000:
 OnClock0200:
@@ -155,4 +195,20 @@ iWin:
 	set .Change,0;
 	setnpctimer 0;
 	end;
+
+function cleanMapMC {
+	setcell .map$,.x1,.y1,.x2,.y2,CELL_NOVENDING,0;
+	return 1;
+	end;
 }
+
+//arg0 : player's GID
+function isPlayerInSW{
+	if(getarg(0,"") == "") {return 0;}
+	.playerName$ = getarg(0,"");
+	getmapxy .map$,.xplayer,.yplayer,BL_PC,.playerName$;
+	return checkcell(.map$,.xplayer,.yplayer,CELL_CHKNOVENDING);
+}
+
+}
+
