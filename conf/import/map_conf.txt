@@ -1,4 +1,0 @@
-char_ip: 127.0.0.1
-map_ip: 127.0.0.1
-userid: 10398009216288017301
-passwd: 846LjN1!q7&LEph

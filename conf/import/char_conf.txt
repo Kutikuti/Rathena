@@ -1,5 +1,0 @@
-userid: 10398009216288017301
-passwd: 846LjN1!q7&LEph
-server_name: RuneMidgard
-login_ip: 127.0.0.1
-char_ip: 127.0.0.1
