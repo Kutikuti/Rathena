@@ -22,40 +22,22 @@
 prontera,161,155,4	script	Musical Chair Event	795,{
 
 
-	function cleanMapMC;function isPlayerInSW;
+	function makeSW;function isPlayerInSW;function checkPlayersInSw;
 
 	debugmes "Debut";
 
-	cleanMapMC();
-	debugmes "155 : " + checkcell("prontera",155,155,CELL_CHKNOVENDING);
-	setcell "prontera",155,155,155,155,CELL_NOVENDING,1;
-	debugmes "155 : " + checkcell("prontera",155,155,CELL_CHKNOVENDING);
+	debugmes isPlayerInSW(getcharid(0));
 
-	debugmes isPlayerInSW("Adminchar");
-	//reset
-	//setcell "prontera",156,148,156,148,CELL_NOVENDING,0;
-	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
-	//setcell "prontera",156,148,156,148,CELL_NOVENDING,1;
-	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
-	//setcell "prontera",156,148,156,148,CELL_NOVENDING,0;
-	//debugmes "156 : " + checkcell("prontera",156,148,CELL_CHKNOVENDING);
+	makeSW();
 
-	//state before
-	//debugmes "156 : " + checkcell("prontera",156,156,CELL_MAELSTROM);
-	//debugmes "157 : " + checkcell("prontera",157,157,CELL_MAELSTROM);
+	checkPlayersInSw();
 
 	//cast
 	//debugmes "Cast";
-	unitskillusepos getnpcid(0),12,2,156,148,-100;
-	//setcell "prontera",156,156,156,156,CELL_MAELSTROM,1;
+	//unitskillusepos getnpcid(0),12,10,156,156,-100;
+	//unitskillusepos getnpcid(0),12,11,155,155,-100;
 	//unitskillusepos getnpcid(0),12,3,157,157,-100;
 
-	//After
-	//debugmes "156 : " + checkcell("prontera",156,156,cell_basilica);
-	//debugmes "157 : " + checkcell("prontera",157,157,CELL_MAELSTROM);
-
-	// Currently set to run every two hours.
-	// To change times, edit the OnClock labels below.
 
 	set .@GMLevel,60;	// GM level required to access NPC.
 	set .@n$,"[^0000FFMusical Chair NPC^000000]";
@@ -124,10 +106,10 @@ OnInit:
 	set .Rule,1;
 	set .Size,10;
 	set .map$,"prontera";
-	set .x1,155;
-	set .y1,155;
-	set .x2,155;
-	set .y2,155;
+	set .x1,150;
+	set .y1,150;
+	set .x2,160;
+	set .y2,160;
 	end;
 OnClock0000:
 OnClock0200:
@@ -196,18 +178,35 @@ iWin:
 	setnpctimer 0;
 	end;
 
-function cleanMapMC {
-	setcell .map$,.x1,.y1,.x2,.y2,CELL_NOVENDING,0;
-	return 1;
-	end;
-}
-
 //arg0 : player's GID
 function isPlayerInSW{
-	if(getarg(0,"") == "") {return 0;}
-	.playerName$ = getarg(0,"");
-	getmapxy .map$,.xplayer,.yplayer,BL_PC,.playerName$;
-	return checkcell(.map$,.xplayer,.yplayer,CELL_CHKNOVENDING);
+	if(getarg(0,0) == 0) {return 0;}
+	.playerID = getarg(0,0);
+	return getstatus(SC_SAFETYWALL,0,.playerID);
+}
+
+function makeSW{
+	.players = getmapusers(.map$);
+
+	//TEST, enlever a la fin 
+	.players = 5;
+
+	for ( .i=1 ; .i <= .players ; .i++ ) {
+		//todo : empecher de spawn safety au même endroit
+		.x = rand(.x1,.x2);
+		.y = rand(.y1,.y2);
+		unitskillusepos getnpcid(0),12,(4+.i),.x,.y,-100;
+	}
+}
+
+function checkPlayersInSw{
+	.@num = getareaunits(BL_PC,.map$,.x1,.y1,.x2,.y2,.@array$[0]);
+	debugmes "players in sw : ";
+	freeloop(1);	// for if the list was too big.
+	for(.@i=0;.@i<getarraysize(.@array$);.@i++)
+		debugmes .@array$[.@i] + " : " + isPlayerInSW(getcharid(0,.@array$[.@i]));
+		freeloop(0);
+	end;
 }
 
 }
