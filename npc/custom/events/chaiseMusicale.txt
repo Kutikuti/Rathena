@@ -19,7 +19,7 @@
 //= 0.1 Création
 //============================================================
 
-prontera,161,155,4	script	Musical Chair Event	795,{
+prontera,161,155,4	script	Musical Chair Event	647,{
 
 	function makeSW;function isPlayerInSW;function checkPlayersInSw;function getWinner;function freezeAll;
 
@@ -284,7 +284,7 @@ function getWinner{
 
 }
 
-prontera,150,140,4	script	MCTP	795,{
+prontera,150,140,4	script	Musical Chair Helper	837,{
 	set .@n$,"[^0000FFMusical Chair Helper^000000]";
 	if 	($EventMCON == 1 && $roundMCON == 0){
 		mes .@n$;
