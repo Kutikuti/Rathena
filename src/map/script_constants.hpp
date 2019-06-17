@@ -378,6 +378,8 @@
 	export_constant(BC_MAP);
 	export_constant(BC_AREA);
 	export_constant(BC_SELF);
+	export_constant(BC_FR);
+	export_constant(BC_EN);
 	export_constant(BC_PC);
 	export_constant(BC_NPC);
 	export_constant(BC_YELLOW);

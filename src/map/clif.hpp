@@ -226,6 +226,8 @@ enum broadcast_flags : uint8_t {
 	BC_MAP			= 1,
 	BC_AREA			= 2,
 	BC_SELF			= 3,
+	BC_FR			= 4,
+	BC_EN			= 5,
 	BC_TARGET_MASK	= 0x07,
 
 	BC_PC			= 0x00,
