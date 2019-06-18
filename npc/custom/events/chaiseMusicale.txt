@@ -80,7 +80,9 @@ OnInit:
 	set .Winner,0;
 	set .Rounds,5;
 	set .Prize,512;
-	set .PrizeAmt,1;
+	set .PrizeAmt,1;	
+	set .PrizeLooser,512;
+	set .PrizeAmtLooser,1;
 	set $mapMC$,"prontera";
 	set $spawnMCx,155;
 	set $spawnMCy,155;
@@ -263,6 +265,10 @@ function checkPlayersInSw{
 		} else{
 			mapannounce $mapMC$,.charname$ + " a choisi un mauvais safety, il est éliminé !",bc_fr;
 			mapannounce $mapMC$,.charname$ + " chose poorly, he is eliminated!",bc_en;
+			attachrid(.gid);
+			getitem .PrizeLooser,.PrizeAmtLooser;
+			detachrid;
+			attachrid(.gmrid);
 			warp "prontera",150,142,.charid;
 			pcblockmove .gid , 0;
 			pcblockskill .gid , 0;
