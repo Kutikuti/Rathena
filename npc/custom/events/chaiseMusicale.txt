@@ -7,16 +7,16 @@
 //===== Compatible With: =====================================
 //= rAthena Project
 //===== Description: =========================================
-//= Dans une petite salle, des safety de diffÃ©rents lvl vont Ãªtre posÃ©s par le npc, en fonction du nombre de joueur. 
+//= Dans une petite salle, des safety de différents lvl vont être posés par le npc, en fonction du nombre de joueur. 
 //Chaque joueur a quelques secondes pour se diriger vers un safety. 
-//Si deux joueurs sont sur un mÃªme safety, câ€™est perdu. 
-//Quand le npc dit â€œStopâ€, les joueurs sont stone curse. 
-//Si les joueurs ne sont pas sur des safety a temps, câ€™est perdu. 
-//Les Safety disparaissent chacun Ã  leur tour, en fonction de leur lvl. 
+//Si deux joueurs sont sur un même safety, c’est perdu. 
+//Quand le npc dit “Stop”, les joueurs sont stone curse. 
+//Si les joueurs ne sont pas sur des safety a temps, c’est perdu. 
+//Les Safety disparaissent chacun à leur tour, en fonction de leur lvl. 
 //Le dernier joueur sur map est le gagnant. Jeu a faire sur plusieures manches.
 //= 
 //===== Additional Comments: =================================
-//= 0.1 CrÃ©ation
+//= 0.1 Création
 //============================================================
 
 prontera,161,155,4	script	Musical Chair Event	647,{
@@ -47,7 +47,7 @@ prontera,161,155,4	script	Musical Chair Event	647,{
 				set .Timer,0;
 				setnpctimer 0; 
 				stopnpctimer;
-				mapannounce $mapMC$,"Un GM a dÃ©cidÃ© d'arrÃªter l'event Chaise Musicale. Aucune rÃ©compense ne sera donnÃ©e.",bc_fr;
+				mapannounce $mapMC$,"Un GM a décidé d'arrêter l'event Chaise Musicale. Aucune récompense ne sera donnée.",bc_fr;
 				mapannounce $mapMC$,"A GM has decided to turn the Musical Chair Event off. As a result no further prizes will be given.",bc_en;
 				close;
 			}
@@ -64,9 +64,9 @@ prontera,161,155,4	script	Musical Chair Event	647,{
 			set .Timer,1; 
 			setnpctimer 0; 
 			initnpctimer;
-			announce $mapMC$,"Lâ€™Event des chaises musicales va dÃ©buter dans 3 minutes. Plus dâ€™explications sur le discord ainsi quâ€™en salle de jeu.",bc_fr;
+			announce $mapMC$,"L’Event des chaises musicales va débuter dans 3 minutes. Plus d’explications sur le discord ainsi qu’en salle de jeu.",bc_fr;
 			announce $mapMC$,"The Musical Chair event will take place in 3 minutes. More information on Discord and in the event room.",bc_en;
-			announce $mapMC$,"Pour rejoindre celui-ci, merci de vous diriger dans la salle Event de Dreamea et de parler au Panneau de lâ€™Ã©vÃ©nement.",bc_fr;
+			announce $mapMC$,"Pour rejoindre celui-ci, merci de vous diriger dans la salle Event de Dreamea et de parler au Panneau de l’événement.",bc_fr;
 			announce $mapMC$,"To join, go to the event room in Dreamea and talk to the event panel.",bc_en;
 			.gmrid = getattachedrid;
 			close2;
@@ -96,21 +96,21 @@ OnTimer10000:
 	end;
 OnTimer60000:
 	if (.Timer!=1) end;
-	announce $mapMC$,"Lâ€™Event des chaises musicales va dÃ©buter dans 2 minutes. Si vous souhaitez participer,",bc_fr;
+	announce $mapMC$,"L’Event des chaises musicales va débuter dans 2 minutes. Si vous souhaitez participer,",bc_fr;
 	announce $mapMC$,"The Musical Chair event will take place in 2 minutes. ",bc_en;
-	announce $mapMC$,"Merci de vous diriger vers la Salle Event, Ã  Dreamea, et de cliquer sur le panneau de lâ€™Ã©vÃ©nement.",bc_fr;
+	announce $mapMC$,"Merci de vous diriger vers la Salle Event, à Dreamea, et de cliquer sur le panneau de l’événement.",bc_fr;
 	announce $mapMC$,"To join, go to the event room in Dreamea and talk to the event panel.",bc_en;
 	end;
 OnTimer120000:
 	if (.Timer!=1) end;
-	announce $mapMC$,"Lâ€™Event des chaises musicales va dÃ©buter dans 1 minutes. Si vous souhaitez participer,",bc_fr;
+	announce $mapMC$,"L’Event des chaises musicales va débuter dans 1 minutes. Si vous souhaitez participer,",bc_fr;
 	announce $mapMC$,"he Musical Chair event will take place in 1 minutes. ",bc_en;
-	announce $mapMC$,"Merci de vous diriger vers la Salle Event, Ã  Dreamea, et de cliquer sur le panneau de lâ€™Ã©vÃ©nement.",bc_fr;
+	announce $mapMC$,"Merci de vous diriger vers la Salle Event, à Dreamea, et de cliquer sur le panneau de l’événement.",bc_fr;
 	announce $mapMC$,"To join, go to the event room in Dreamea and talk to the event panel.",bc_en;
 	end;
 OnTimer180000:
 	if (.Timer!=1) end;
-	announce $mapMC$,"Lâ€™Event des chaises musicales dÃ©bute ! Bonne partie Ã  tous !",bc_fr;
+	announce $mapMC$,"L’Event des chaises musicales débute ! Bonne partie à tous !",bc_fr;
 	announce $mapMC$,"The Musical Chair event has begun! Have fun!",bc_en;
 	set .Timer,0; 
 	stopnpctimer;
@@ -125,22 +125,22 @@ iMusicalChair:
 	mapannounce $mapMC$,"Round " + (.RoundCount+1) + "/" + .Rounds,bc_en;
 	sleep2 5000;
 
-	mapannounce $mapMC$,"Lâ€™event dÃ©marre !",bc_fr;
+	mapannounce $mapMC$,"L’event démarre !",bc_fr;
 	mapannounce $mapMC$,"The event is starting!",bc_en;
 	sleep2 2000;
-	mapannounce $mapMC$,"Je vous rappelle briÃ¨vement les rÃ¨gles : ",bc_fr;
+	mapannounce $mapMC$,"Je vous rappelle brièvement les règles : ",bc_fr;
 	mapannounce $mapMC$,"I'll explain the rules again quickly:",bc_en;
 	sleep2 2000;
-	mapannounce $mapMC$,"Dans cette salle va Ãªtre invoquÃ© des Safety Wall de diffÃ©rents niveaux.",bc_fr;
+	mapannounce $mapMC$,"Dans cette salle va être invoqué des Safety Wall de différents niveaux.",bc_fr;
 	mapannounce $mapMC$,"Safety Walls of different levels will be cast in this room.",bc_en;
 	sleep2 2000;
-	mapannounce $mapMC$,"A vous de choisir judicieusement le vÃ´tre.",bc_fr;
+	mapannounce $mapMC$,"A vous de choisir judicieusement le vôtre.",bc_fr;
 	mapannounce $mapMC$,"Choose yours wisely.",bc_en;
 	sleep2 2000;
-	mapannounce $mapMC$,"AprÃ¨s 30 secondes, vous ne pourrez plus bouger, faites donc attention Ã  oÃ¹ vous mettez les pieds !",bc_fr;
+	mapannounce $mapMC$,"Après 30 secondes, vous ne pourrez plus bouger, faites donc attention à où vous mettez les pieds !",bc_fr;
 	mapannounce $mapMC$,"30 seconds later, you won't be able to move, be careful where you are staying!",bc_en;
 	sleep2 2000;
-	mapannounce $mapMC$,"Si vous nâ€™avez pas de Safety Wall, câ€™est perdu.",bc_fr;
+	mapannounce $mapMC$,"Si vous n’avez pas de Safety Wall, c’est perdu.",bc_fr;
 	mapannounce $mapMC$,"If you don't have a Safety Wall, you lost.",bc_en;
 	sleep2 2000;
 	mapannounce $mapMC$,"Le gagnant est celui qui restera le plus longtemps dans un safety !",bc_fr;
@@ -149,7 +149,7 @@ iMusicalChair:
 	mapannounce $mapMC$,"A vos marques...",bc_fr;
 	mapannounce $mapMC$,"Ready...",bc_en;
 	sleep2 1000;
-	mapannounce $mapMC$,"PrÃªtâ€¦",bc_fr;
+	mapannounce $mapMC$,"Prêt…",bc_fr;
 	mapannounce $mapMC$,"Set...",bc_en;
 	sleep2 1000;
 	mapannounce $mapMC$,"Choisissez votre Safety !",bc_fr;
@@ -162,7 +162,7 @@ iMusicalChair:
 
 	sleep2 30000;
 
-	mapannounce $mapMC$,"Les 30 secondes sont Ã©coulÃ©es !",bc_fr;
+	mapannounce $mapMC$,"Les 30 secondes sont écoulées !",bc_fr;
 	mapannounce $mapMC$,"30 seconds are over!",bc_en;
 	freezeAll();
 
@@ -195,7 +195,7 @@ iWin:
 		set $EventMCON,0;
 		setnpctimer 0; 
 		stopnpctimer;
-		mapannounce $mapMC$,"Cette manche Ã©tait la derniÃ¨re, merci d'avoir participÃ© !",bc_fr;
+		mapannounce $mapMC$,"Cette manche était la dernière, merci d'avoir participé !",bc_fr;
 		mapannounce $mapMC$,"This was the last round, thank you for playing!",bc_en;
 		end;
 	}
@@ -205,14 +205,14 @@ iCancel:
 	if ($EventMCON!=1) {end;}
 	set .RoundCount,.RoundCount+1;
 	$roundMCON = 0;
-	mapannounce $mapMC$,"Personne n'Ã©tait positionnÃ© sur une Safety Wall, vous avez tous perdu...",bc_fr;
+	mapannounce $mapMC$,"Personne n'était positionné sur une Safety Wall, vous avez tous perdu...",bc_fr;
 	mapannounce $mapMC$,"Nobody was in a Safety Wall, you all lost...",bc_en;
 	if (.RoundCount>=.Rounds) {
 		set .RoundCount,0; 
 		set $EventMCON,0;
 		setnpctimer 0; 
 		stopnpctimer;
-		mapannounce $mapMC$,"Cette manche Ã©tait la derniÃ¨re, merci d'avoir participÃ© !",bc_fr;
+		mapannounce $mapMC$,"Cette manche était la dernière, merci d'avoir participé !",bc_fr;
 		mapannounce $mapMC$,"This was the last round, thank you for playing!",bc_en;
 		end;
 	}
@@ -230,7 +230,7 @@ function makeSW{
 	.players = getareaunits(BL_PC,$mapMC$,.x1,.y1,.x2,.y2,.@array$[0]);
 
 	for ( .i=1 ; .i <= .players ; .i++ ) {
-		//todo : empecher de spawn safety au mÃªme endroit
+		//todo : empecher de spawn safety au même endroit
 		.x = rand(.x1,.x2);
 		.y = rand(.y1,.y2);
 		unitskillusepos getnpcid(0),12,(6+.i),.x,.y,-100;
@@ -261,7 +261,7 @@ function checkPlayersInSw{
 		if (.inSW == 1) { 
 			.playersinSW = .playersinSW + 1; 
 		} else{
-			mapannounce $mapMC$,.charname$ + " a choisi un mauvais safety, il est Ã©liminÃ© !",bc_fr;
+			mapannounce $mapMC$,.charname$ + " a choisi un mauvais safety, il est éliminé !",bc_fr;
 			mapannounce $mapMC$,.charname$ + " chose poorly, he is eliminated!",bc_en;
 			warp "prontera",150,142,.charid;
 			pcblockmove .gid , 0;
@@ -290,11 +290,11 @@ prontera,150,140,4	script	Musical Chair Helper	837,{
 	set .@n$,"[^0000FFMusical Chair Helper^000000]";
 	if 	($EventMCON == 1 && $roundMCON == 0){
 		mes .@n$;
-		mes @langUser?"RÃ¨gles du jeu :":"Game rules:";
-		mes @langUser?"Dans cette salle va Ãªtre invoquÃ© autant de Safety Wall que de joueurs. A vous de choisir votre safety avec prÃ©caution. AprÃ¨s 30 secondes, vous ne pourrez plus bouger, faites donc attention Ã  oÃ¹ vous mettez les pieds !":"Safety Walls of different levels will be cast in this room. Choose yours wisely. 30 seconds later, you won't be able to move, be careful where you are staying!";
+		mes @langUser?"Règles du jeu :":"Game rules:";
+		mes @langUser?"Dans cette salle va être invoqué autant de Safety Wall que de joueurs. A vous de choisir votre safety avec précaution. Après 30 secondes, vous ne pourrez plus bouger, faites donc attention à où vous mettez les pieds !":"Safety Walls of different levels will be cast in this room. Choose yours wisely. 30 seconds later, you won't be able to move, be careful where you are staying!";
 		next;
 		mes .@n$;
-		mes @langUser?"Quand le top est lancÃ©, les safety vont progressivement disparaÃ®tre car ils seront de diffÃ©rents niveau. Si le votre disparaÃ®t, vous avez perdu. Le dernier dans la salle a gagnÃ©. Si vous nâ€™avez choisi aucun safety, vous avez perdu.":"Safety Walls will progressively disapear as they are from different level. If yours disapear, you lost. The last one standing is the winner. If you didn't choose a Safety, you lost.";
+		mes @langUser?"Quand le top est lancé, les safety vont progressivement disparaître car ils seront de différents niveau. Si le votre disparaît, vous avez perdu. Le dernier dans la salle a gagné. Si vous n’avez choisi aucun safety, vous avez perdu.":"Safety Walls will progressively disapear as they are from different level. If yours disapear, you lost. The last one standing is the winner. If you didn't choose a Safety, you lost.";
 		next;
 		mes .@n$;
 		mes @langUser?"Souhaitez-vous participer ?":"TODO";
